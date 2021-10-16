@@ -1,7 +1,6 @@
 package presentacion.vista;
 
-import presentacion.animaciones.ControladorDeAnimaciones;
-import entidad.Animacion;
+import presentacion.controlador.ControladorAnimaciones;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,7 +14,6 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.SystemColor;
 
 public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -46,40 +44,40 @@ public class VentanaPrincipal extends JFrame {
 		
 		lblG = new JLabel("G");
 		lblG.setFont(new Font("Monospaced", Font.BOLD, 60));
-		lblG.setForeground(new Color(192, 192, 192));
+		lblG.setForeground(Color.DARK_GRAY);
 		lblG.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		lblR = new JLabel("R");
 		lblR.setHorizontalAlignment(SwingConstants.CENTER);
-		lblR.setForeground(Color.LIGHT_GRAY);
+		lblR.setForeground(Color.DARK_GRAY);
 		lblR.setFont(new Font("Monospaced", Font.BOLD, 60));
 		
 		lblU = new JLabel("U");
 		lblU.setHorizontalAlignment(SwingConstants.CENTER);
-		lblU.setForeground(Color.LIGHT_GRAY);
+		lblU.setForeground(Color.DARK_GRAY);
 		lblU.setFont(new Font("Monospaced", Font.BOLD, 60));
 		
 		lblP = new JLabel("P");
 		lblP.setHorizontalAlignment(SwingConstants.CENTER);
-		lblP.setForeground(Color.LIGHT_GRAY);
+		lblP.setForeground(Color.DARK_GRAY);
 		lblP.setFont(new Font("Monospaced", Font.BOLD, 60));
 
 		lblO = new JLabel("O");
 		lblO.setHorizontalAlignment(SwingConstants.CENTER);
-		lblO.setForeground(Color.LIGHT_GRAY);
+		lblO.setForeground(Color.DARK_GRAY);
 		lblO.setFont(new Font("Monospaced", Font.BOLD, 60));
 		
 		lblEspacio = new JLabel(" ");
 		lblEspacio.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEspacio.setForeground(Color.LIGHT_GRAY);
+		lblEspacio.setForeground(Color.DARK_GRAY);
 		lblEspacio.setFont(new Font("Monospaced", Font.BOLD, 60));
 		
 		lbl3 = new JLabel("3");
 		lbl3.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl3.setForeground(Color.LIGHT_GRAY);
+		lbl3.setForeground(Color.DARK_GRAY);
 		lbl3.setFont(new Font("Monospaced", Font.BOLD, 60));
 
-		addWindowListener(new ControladorDeAnimaciones(lblG,lblR,lblU,lblP,lblO,lbl3));
+		addWindowListener(new ControladorAnimaciones(this));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 150, 450, 300);
 		
@@ -87,32 +85,32 @@ public class VentanaPrincipal extends JFrame {
 		setJMenuBar(menu);
 		
 		mnPersona = new JMenu("Persona");
-		mnPersona.setForeground(new Color(128, 0, 0));
-		mnPersona.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		mnPersona.setForeground(Color.BLACK);
+		mnPersona.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		menu.add(mnPersona);
 		
 		mntmAgregar = new JMenuItem("Agregar");
-		mntmAgregar.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		mntmAgregar.setForeground(new Color(0, 128, 0));
+		mntmAgregar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mntmAgregar.setForeground(Color.BLACK);
 		mnPersona.add(mntmAgregar);
 		
 		mntmModificar = new JMenuItem("Modificar");
-		mntmModificar.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		mntmModificar.setForeground(new Color(128, 0, 128));
+		mntmModificar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mntmModificar.setForeground(Color.BLACK);
 		mnPersona.add(mntmModificar);
 		
 		mntmEliminar = new JMenuItem("Eliminar");
-		mntmEliminar.setForeground(new Color(255, 0, 0));
-		mntmEliminar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		mntmEliminar.setForeground(Color.BLACK);
+		mntmEliminar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mnPersona.add(mntmEliminar);
 		
 		mntmListar = new JMenuItem("Listar");
-		mntmListar.setForeground(new Color(0, 0, 255));
-		mntmListar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		mntmListar.setForeground(Color.BLACK);
+		mntmListar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mnPersona.add(mntmListar);
 		
 		panel = new JPanel();
-		panel.setBackground(SystemColor.inactiveCaptionBorder);
+		panel.setBackground(Color.WHITE);
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(panel);
 		
@@ -167,54 +165,28 @@ public class VentanaPrincipal extends JFrame {
 		
 	}
 	
-	// Getters y Setters
-	
 	public JLabel getLblG() {
 		return lblG;
-	}
-
-	protected void setLblG(JLabel lblG) {
-		this.lblG = lblG;
 	}
 
 	public JLabel getLblR() {
 		return lblR;
 	}
 
-	protected void setLblR(JLabel lblR) {
-		this.lblR = lblR;
-	}
-
 	public JLabel getLblU() {
 		return lblU;
-	}
-
-	protected void setLblU(JLabel lblU) {
-		this.lblU = lblU;
 	}
 
 	public JLabel getLblP() {
 		return lblP;
 	}
 
-	protected void setLblP(JLabel lblP) {
-		this.lblP = lblP;
-	}
-
 	public JLabel getLblO() {
 		return lblO;
-	}
-
-	protected void setLblO(JLabel lblO) {
-		this.lblO = lblO;
 	}
 
 	public JLabel getLbl3() {
 		return lbl3;
 	}
-
-	protected void setLbl3(JLabel lbl3) {
-		this.lbl3 = lbl3;
-	}
-
+	
 }

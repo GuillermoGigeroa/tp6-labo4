@@ -2,6 +2,7 @@ package utilidades;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 
 public abstract class Util {
@@ -20,5 +21,13 @@ public abstract class Util {
 		listaColores.add(Color.PINK);
 		listaColores.add(Color.YELLOW);
 		return listaColores;
+	}
+	
+	public static Color colorAlAzar() {
+		ArrayList<Color> listaColores = Util.getListaColores();
+		int cantidadColores = listaColores.size();
+		ThreadLocalRandom tlr = ThreadLocalRandom.current();
+		int numero = tlr.nextInt(0, cantidadColores);
+		return listaColores.get(numero);
 	}
 }

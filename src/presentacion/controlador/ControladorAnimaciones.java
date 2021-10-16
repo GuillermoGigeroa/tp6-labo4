@@ -1,31 +1,35 @@
-package presentacion.animaciones;
+package presentacion.controlador;
 
+import java.awt.Color;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import javax.swing.JLabel;
 import entidad.Animacion;
+import presentacion.vista.VentanaPrincipal;
 
-public class ControladorDeAnimaciones implements WindowListener {
+public class ControladorAnimaciones implements WindowListener {
 	private ArrayList<Animacion> listaLabels;
+	private VentanaPrincipal ventana;
 
 	// Constructor
-	public ControladorDeAnimaciones(JLabel g, JLabel r, JLabel u, JLabel p, JLabel o, JLabel nro3) {
-		listaLabels = new ArrayList<Animacion>();
-		listaLabels.add(new Animacion(g));
-		listaLabels.add(new Animacion(r));
-		listaLabels.add(new Animacion(u));
-		listaLabels.add(new Animacion(p));
-		listaLabels.add(new Animacion(o));
-		listaLabels.add(new Animacion(nro3));
+	public ControladorAnimaciones(VentanaPrincipal ventana) {
+		this.ventana = ventana;
+		inicializarLabels(new Color(204, 204, 255));
 	}
-
-	// Metodos
-	private void cambiarColores() {
-		Iterator<Animacion> listaAnimaciones = listaLabels.iterator();
-		Animacion.iniciarListaColores();
+	
+	private void inicializarLabels(Color color) {
+		listaLabels = new ArrayList<Animacion>();
+		listaLabels.add(new Animacion(ventana.getLblG(), color));
+		listaLabels.add(new Animacion(ventana.getLblR(), color));
+		listaLabels.add(new Animacion(ventana.getLblU(), color));
+		listaLabels.add(new Animacion(ventana.getLblP(), color));
+		listaLabels.add(new Animacion(ventana.getLblO(), color));
+		listaLabels.add(new Animacion(ventana.getLbl3(), color));
+	}
+	
+	private void cambiarColores(ArrayList<Animacion> lista) {
+		Iterator<Animacion> listaAnimaciones = lista.iterator();
 		while (listaAnimaciones.hasNext()) {
 			listaAnimaciones.next().pintar();
 		}
@@ -33,7 +37,7 @@ public class ControladorDeAnimaciones implements WindowListener {
 	
 	@Override
 	public void windowOpened(WindowEvent e) {
-		cambiarColores();
+		cambiarColores(listaLabels);
 	}
 
 	@Override

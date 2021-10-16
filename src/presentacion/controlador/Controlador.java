@@ -3,12 +3,14 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
+
 import entidad.Animacion;
 import presentacion.vista.VentanaPrincipal;
 
 public class Controlador implements ActionListener {
 	
 	private VentanaPrincipal ventana;
+	
 	public Controlador(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 		agregarAnimaciones();
@@ -26,7 +28,7 @@ public class Controlador implements ActionListener {
 	public void agregarAnimacion(JLabel label) {
 		label.addMouseListener(new Animacion(label));
 	}
-	
+
 	public void mostrarVentana() {
 		ventana.setVisible(true);
 	}

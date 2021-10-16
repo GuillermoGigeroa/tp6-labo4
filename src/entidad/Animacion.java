@@ -3,53 +3,50 @@ package entidad;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
-
 import utilidades.Util;
-
 import javax.swing.JLabel;
 
 public class Animacion implements MouseListener {
 
-	private static ArrayList<Color> listaColores;
 	public JLabel label;
+	public Color color;
+	
+	public Animacion(JLabel label, Color color) {
+		this.label = label;
+		this.color = color;
+	}
 	
 	public Animacion(JLabel label) {
 		this.label = label;
+		this.color = colorAlAzar();
 	}
 	
-	public static void iniciarListaColores() {
-		listaColores = Util.getListaColores();		
+	public Color colorAlAzar() {
+		return Util.colorAlAzar();
 	}
 	
 	public void pintar() {
-		pintarAlAzar(label);
+		if (label != null) {
+			label.setForeground(this.color);			
+		}
 	}
 	
-	public void pintar(Color color) {
-		label.setForeground(color);
+	private void pintar(Color color) {
+		if (label != null) {
+			label.setForeground(color);
+		}
 	}
 	
-	private void pintarAlAzar(JLabel este) {
-		int cantidadColores = listaColores.size();
-        ThreadLocalRandom tlr = ThreadLocalRandom.current();
-        int numero = tlr.nextInt(0, cantidadColores);
-		pintar(este,listaColores.get(numero));
+	private void pintarAlAzar() {
+		pintar(colorAlAzar());
 	}
 	
-	private void pintar(JLabel este, Color color) {
-		este.setForeground(color);
-	}
-
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		pintar(Color.BLACK);
-	}
+	public void mouseClicked(MouseEvent e) {}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		pintar();
+		pintarAlAzar();
 	}
 
 	@Override
