@@ -3,11 +3,11 @@ package presentacion.vista;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 
-public class PanelAgregar extends JPanel {
+public class PanelModificar extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private GridBagLayout gridBagLayout;
 
-	public PanelAgregar() {
+	public PanelModificar() {
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0};
 		gridBagLayout.rowHeights = new int[]{0};
