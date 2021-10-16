@@ -38,7 +38,6 @@ public class Animacion implements MouseListener {
 		pintar(este,listaColores.get(numero));
 	}
 	
-	
 	private void pintar(JLabel este, Color color) {
 		este.setForeground(color);
 	}
