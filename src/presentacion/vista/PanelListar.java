@@ -18,9 +18,9 @@ public class PanelListar extends JPanel {
 	public PanelListar() {
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{26, 296, 26, 0};
-		gridBagLayout.rowHeights = new int[]{26, 0, 26, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowHeights = new int[]{26, 160, 26, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		table = new JTable();

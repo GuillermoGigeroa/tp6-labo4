@@ -7,6 +7,10 @@ import java.awt.GridBagConstraints;
 import javax.swing.JList;
 import java.awt.Insets;
 import javax.swing.JTextField;
+
+import entidad.Persona;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 
 public class PanelModificar extends JPanel {
@@ -23,7 +27,7 @@ public class PanelModificar extends JPanel {
 	private GridBagConstraints gbc_txtDni;
 	private GridBagConstraints gbc_btnModificar;
 	private JButton btnModificar;
-	private JList list;
+	private JList<Persona> list;
 	
 	public PanelModificar() {
 		gridBagLayout = new GridBagLayout();
@@ -41,7 +45,7 @@ public class PanelModificar extends JPanel {
 		gbc_lblSeleccione.gridy = 1;
 		add(lblSeleccione, gbc_lblSeleccione);
 		
-		list = new JList();
+		list = new JList<Persona>(new DefaultListModel<Persona>());
 		gbc_list = new GridBagConstraints();
 		gbc_list.gridwidth = 4;
 		gbc_list.insets = new Insets(0, 0, 5, 5);
@@ -51,7 +55,6 @@ public class PanelModificar extends JPanel {
 		add(list, gbc_list);
 		
 		txtNombre = new JTextField();
-		txtNombre.setText("Nombre");
 		gbc_txtNombre = new GridBagConstraints();
 		gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
 		gbc_txtNombre.fill = GridBagConstraints.HORIZONTAL;
@@ -61,7 +64,6 @@ public class PanelModificar extends JPanel {
 		txtNombre.setColumns(10);
 		
 		txtApellido = new JTextField();
-		txtApellido.setText("Apellido");
 		gbc_txtApellido = new GridBagConstraints();
 		gbc_txtApellido.insets = new Insets(0, 0, 5, 5);
 		gbc_txtApellido.fill = GridBagConstraints.HORIZONTAL;
@@ -71,7 +73,6 @@ public class PanelModificar extends JPanel {
 		txtApellido.setColumns(10);
 		
 		txtDni = new JTextField();
-		txtDni.setText("Dni");
 		gbc_txtDni = new GridBagConstraints();
 		gbc_txtDni.insets = new Insets(0, 0, 5, 5);
 		gbc_txtDni.fill = GridBagConstraints.HORIZONTAL;

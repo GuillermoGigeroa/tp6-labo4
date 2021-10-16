@@ -1,9 +1,7 @@
 package presentacion.vista;
 
-import presentacion.controlador.ControladorAnimaciones;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -14,6 +12,7 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.BorderLayout;
 
 public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -39,37 +38,34 @@ public class VentanaPrincipal extends JFrame {
 	private GridBagConstraints gbc_lblO;
 	private GridBagConstraints gbc_lblEspacio;
 	private GridBagConstraints gbc_lbl3;
+	private JPanel panelBarra;
+	private JLabel lblMenu;
 
 	public VentanaPrincipal() {
+		setTitle("Programa");
 		
 		lblG = new JLabel("G");
 		lblG.setFont(new Font("Monospaced", Font.BOLD, 60));
-		lblG.setForeground(Color.DARK_GRAY);
 		lblG.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		lblR = new JLabel("R");
 		lblR.setHorizontalAlignment(SwingConstants.CENTER);
-		lblR.setForeground(Color.DARK_GRAY);
 		lblR.setFont(new Font("Monospaced", Font.BOLD, 60));
 		
 		lblU = new JLabel("U");
 		lblU.setHorizontalAlignment(SwingConstants.CENTER);
-		lblU.setForeground(Color.DARK_GRAY);
 		lblU.setFont(new Font("Monospaced", Font.BOLD, 60));
 		
 		lblP = new JLabel("P");
 		lblP.setHorizontalAlignment(SwingConstants.CENTER);
-		lblP.setForeground(Color.DARK_GRAY);
 		lblP.setFont(new Font("Monospaced", Font.BOLD, 60));
 
 		lblO = new JLabel("O");
 		lblO.setHorizontalAlignment(SwingConstants.CENTER);
-		lblO.setForeground(Color.DARK_GRAY);
 		lblO.setFont(new Font("Monospaced", Font.BOLD, 60));
 		
 		lblEspacio = new JLabel(" ");
 		lblEspacio.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEspacio.setForeground(Color.DARK_GRAY);
 		lblEspacio.setFont(new Font("Monospaced", Font.BOLD, 60));
 		
 		lbl3 = new JLabel("3");
@@ -77,7 +73,6 @@ public class VentanaPrincipal extends JFrame {
 		lbl3.setForeground(Color.DARK_GRAY);
 		lbl3.setFont(new Font("Monospaced", Font.BOLD, 60));
 
-		addWindowListener(new ControladorAnimaciones(this));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 150, 450, 300);
 		
@@ -109,9 +104,16 @@ public class VentanaPrincipal extends JFrame {
 		mntmListar.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		mnPersona.add(mntmListar);
 		
+		panelBarra = new JPanel();
+		menu.add(panelBarra);
+		panelBarra.setLayout(new BorderLayout(0, 0));
+		
+		lblMenu = new JLabel("");
+		lblMenu.setHorizontalAlignment(SwingConstants.CENTER);
+		panelBarra.add(lblMenu, BorderLayout.CENTER);
+		
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(panel);
 		
 		gbl_panel = new GridBagLayout();
@@ -189,6 +191,10 @@ public class VentanaPrincipal extends JFrame {
 		return lbl3;
 	}
 	
+	public JLabel getLlbMenu() {
+		return lblMenu;
+	}
+	
 	public JMenuItem getMenuAgregar() {
 		return mntmAgregar;
 	}
@@ -204,4 +210,5 @@ public class VentanaPrincipal extends JFrame {
 	public JMenuItem getMenuListar() {
 		return mntmListar;
 	}
+	
 }

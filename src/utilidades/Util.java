@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
+import presentacion.vista.VentanaPrincipal;
 
 public abstract class Util {
+	
 	public static void mensajeEnPantalla(String mensaje) {
 		JOptionPane.showMessageDialog(null, mensaje);
 	}
+	
 	public static ArrayList<Color> getListaColores() {
 		ArrayList<Color> listaColores = new ArrayList<Color>();
 		listaColores.add(Color.RED);
@@ -29,5 +32,9 @@ public abstract class Util {
 		ThreadLocalRandom tlr = ThreadLocalRandom.current();
 		int numero = tlr.nextInt(0, cantidadColores);
 		return listaColores.get(numero);
+	}
+	
+	public static VentanaPrincipal getVentanaPrincipal() {
+		return new VentanaPrincipal();
 	}
 }
