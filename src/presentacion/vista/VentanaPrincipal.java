@@ -90,23 +90,23 @@ public class VentanaPrincipal extends JFrame {
 		menu.add(mnPersona);
 		
 		mntmAgregar = new JMenuItem("Agregar");
-		mntmAgregar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		mntmAgregar.setForeground(Color.BLACK);
+		mntmAgregar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		mntmAgregar.setForeground(Color.GRAY);
 		mnPersona.add(mntmAgregar);
 		
 		mntmModificar = new JMenuItem("Modificar");
-		mntmModificar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		mntmModificar.setForeground(Color.BLACK);
+		mntmModificar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		mntmModificar.setForeground(Color.GRAY);
 		mnPersona.add(mntmModificar);
 		
 		mntmEliminar = new JMenuItem("Eliminar");
-		mntmEliminar.setForeground(Color.BLACK);
-		mntmEliminar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mntmEliminar.setForeground(Color.GRAY);
+		mntmEliminar.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		mnPersona.add(mntmEliminar);
 		
 		mntmListar = new JMenuItem("Listar");
-		mntmListar.setForeground(Color.BLACK);
-		mntmListar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mntmListar.setForeground(Color.GRAY);
+		mntmListar.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		mnPersona.add(mntmListar);
 		
 		panel = new JPanel();
@@ -165,28 +165,43 @@ public class VentanaPrincipal extends JFrame {
 		
 	}
 	
-	public JLabel getLblG() {
+	public JLabel getLetraG() {
 		return lblG;
 	}
 
-	public JLabel getLblR() {
+	public JLabel getLentraR() {
 		return lblR;
 	}
 
-	public JLabel getLblU() {
+	public JLabel getLetraU() {
 		return lblU;
 	}
 
-	public JLabel getLblP() {
+	public JLabel getLetraP() {
 		return lblP;
 	}
 
-	public JLabel getLblO() {
+	public JLabel getLetraO() {
 		return lblO;
 	}
 
-	public JLabel getLbl3() {
+	public JLabel getNum3() {
 		return lbl3;
 	}
 	
+	public JMenuItem getMenuAgregar() {
+		return mntmAgregar;
+	}
+
+	public JMenuItem getMenuModificar() {
+		return mntmModificar;
+	}
+
+	public JMenuItem getMenuEliminar() {
+		return mntmEliminar;
+	}
+
+	public JMenuItem getMenuListar() {
+		return mntmListar;
+	}
 }

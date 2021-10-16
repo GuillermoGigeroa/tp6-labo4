@@ -20,12 +20,12 @@ public class ControladorAnimaciones implements WindowListener {
 	
 	private void inicializarLabels(Color color) {
 		listaLabels = new ArrayList<Animacion>();
-		listaLabels.add(new Animacion(ventana.getLblG(), color));
-		listaLabels.add(new Animacion(ventana.getLblR(), color));
-		listaLabels.add(new Animacion(ventana.getLblU(), color));
-		listaLabels.add(new Animacion(ventana.getLblP(), color));
-		listaLabels.add(new Animacion(ventana.getLblO(), color));
-		listaLabels.add(new Animacion(ventana.getLbl3(), color));
+		listaLabels.add(new Animacion(ventana.getLetraG(), color));
+		listaLabels.add(new Animacion(ventana.getLentraR(), color));
+		listaLabels.add(new Animacion(ventana.getLetraU(), color));
+		listaLabels.add(new Animacion(ventana.getLetraP(), color));
+		listaLabels.add(new Animacion(ventana.getLetraO(), color));
+		listaLabels.add(new Animacion(ventana.getNum3(), color));
 	}
 	
 	private void cambiarColores(ArrayList<Animacion> lista) {
