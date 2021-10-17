@@ -93,4 +93,22 @@ public class PanelAgregar extends JPanel {
 		gbc_btnAceptar.gridy = 4;
 		add(btnAceptar, gbc_btnAceptar);
 	}
+	
+	public JButton getBtnAceptar() {
+		return btnAceptar;
+	}
+
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+	
+	public JTextField getTxtApellido() {
+		return txtApellido;
+	}
+	
+	public JTextField getTxtDni() {
+		return txtDni;
+	}
 }
+
+

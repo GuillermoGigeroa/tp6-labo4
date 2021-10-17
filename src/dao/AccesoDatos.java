@@ -1,18 +1,16 @@
 package dao;
-
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entidad.Persona;
 
 public interface AccesoDatos {
 	
-	public Connection conexion() throws SQLException, ClassNotFoundException;
+	public Connection conexion();
 	
-	public void cerrar ();
+	 public void cerrar ();
 	
-	public Persona mostrar(String dni);
+	public  Persona mostrar(String dni);
 	
 	public ArrayList<Persona> listar();
 	

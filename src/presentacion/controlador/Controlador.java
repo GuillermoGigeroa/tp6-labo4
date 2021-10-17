@@ -8,18 +8,23 @@ import java.util.Iterator;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import entidad.Animacion;
+import entidad.Dni;
+import exceptionProject.DniInvalido;
 import presentacion.vista.*;
+import utilidades.Util;
 
 public class Controlador implements ActionListener {
 	
 	private VentanaPrincipal ventana;
 	
+//	Constructor
 	public Controlador(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 		agregarAnimacionGrupo3();
 		agregarAnimacionMenu();
 	}
 	
+//	Metodo para agregar animacion del texto "Grupo 3"
 	public void agregarAnimacionGrupo3 () {
 		ArrayList<JLabel> lista = new ArrayList<JLabel>();
 		lista.add(ventana.getLetraG());
@@ -35,6 +40,7 @@ public class Controlador implements ActionListener {
 		}
 	}
 	
+//	Metodo para agregar la animacion de los botones al presionarlo
 	public void agregarAnimacionMenu () {
 		ventana.getMenuAgregar().addActionListener(a->accionBotonAgregar(a));
 		ventana.getMenuModificar().addActionListener(a->accionBotonModificar(a));
@@ -42,18 +48,52 @@ public class Controlador implements ActionListener {
 		ventana.getMenuListar().addActionListener(a->accionBotonListar(a));
 	}
 	
+//	Metodo para activar la funcionalidad de Agregar y el PanelAgregar
 	public void accionBotonAgregar(ActionEvent a) {
-		JPanel panel = new PanelAgregar();
+		PanelAgregar panel = new PanelAgregar();
 		cambiarPanel(panel);
 		ventana.getLlbMenu().setText("Menu agregar");
 		ventana.getMenuAgregar().setForeground(Color.BLACK);
 		ventana.getMenuModificar().setForeground(Color.GRAY);
 		ventana.getMenuEliminar().setForeground(Color.GRAY);
 		ventana.getMenuListar().setForeground(Color.GRAY);
+		cargarControladorBotonAceptar(panel);
 	}
 	
+//	Metodo para cargar el controlador del boton aceptar de PanelAgregar
+	public void cargarControladorBotonAceptar (PanelAgregar panel) {
+		panel.getBtnAceptar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (panel.getTxtNombre().getText().trim().isEmpty()) {
+					Util.mensajeEnPantalla("Ingrese nombre antes de continuar");
+					return;
+				}
+				if (panel.getTxtApellido().getText().trim().isEmpty()) {
+					Util.mensajeEnPantalla("Ingrese apellido antes de continuar");
+					return;
+				}
+				String numero = panel.getTxtDni().getText().trim();
+				if (numero.isEmpty()) {
+					Util.mensajeEnPantalla("Ingrese Dni antes de continuar");
+					return;
+				}
+				try {
+					new Dni(numero);
+				}
+				catch (DniInvalido error) {
+					Util.mensajeEnPantalla(error.getMessage());
+					return;
+				}
+				Util.mensajeEnPantalla("Se ha ejecutado correctamente el comando del botón");
+			}
+		});
+	}
+	
+
+//	Metodo para activar la funcionalidad de Modificar y el PanelModificar
 	public void accionBotonModificar(ActionEvent a) {
-		JPanel panel = new PanelModificar();
+		PanelModificar panel = new PanelModificar();
 		cambiarPanel(panel);
 		ventana.getLlbMenu().setText("Menu modificar");
 		ventana.getMenuAgregar().setForeground(Color.GRAY);
@@ -62,8 +102,9 @@ public class Controlador implements ActionListener {
 		ventana.getMenuListar().setForeground(Color.GRAY);
 	}
 	
+//	Metodo para activar la funcionalidad de Eliminar y el PanelEliminar
 	public void accionBotonEliminar(ActionEvent a) {
-		JPanel panel = new PanelEliminar();
+		PanelEliminar panel = new PanelEliminar();
 		cambiarPanel(panel);
 		ventana.getLlbMenu().setText("Menu eliminar");
 		ventana.getMenuAgregar().setForeground(Color.GRAY);
@@ -72,6 +113,7 @@ public class Controlador implements ActionListener {
 		ventana.getMenuListar().setForeground(Color.GRAY);
 	}
 	
+//	Metodo para activar la funcionalidad de Listar y el PanelListar
 	public void accionBotonListar(ActionEvent a) {
 		JPanel panel = new PanelListar();
 		cambiarPanel(panel);
@@ -82,6 +124,7 @@ public class Controlador implements ActionListener {
 		ventana.getMenuListar().setForeground(Color.BLACK);
 	}
 	
+//	Metodo para cargar el panel ingresado en la ventana
 	private void cambiarPanel(JPanel estePanel) {
 		ventana.getContentPane().removeAll();
 		ventana.setContentPane(estePanel);
@@ -89,11 +132,12 @@ public class Controlador implements ActionListener {
 		ventana.getContentPane().revalidate();
 	}
 
+//	Metodo para mostrar la ventana actual
 	public void mostrarVentana() {
 		ventana.setVisible(true);
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) { }
+	public void actionPerformed(ActionEvent e) {}
 
 }

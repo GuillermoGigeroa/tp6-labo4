@@ -32,4 +32,16 @@ public abstract class Util {
 		int numero = tlr.nextInt(0, cantidadColores);
 		return listaColores.get(numero);
 	}
+	
+//	Metodo que quita los puntos de un String
+	
+	public static String quitarPuntos(String texto) {
+		String resultado = "";
+		for (int i = 0; i < texto.length(); i ++) {
+			if (texto.charAt(i) != '.') {
+				resultado += texto.charAt(i);
+			}
+		}
+		return resultado;
+	}
 }

@@ -1,21 +1,21 @@
 package daoImpl;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import entidad.Persona;
 import dao.AccesoDatos;
 
 public class PersonaDao implements AccesoDatos {
-	private static final String driver = "com.mysql.cj.jdbc.Driver";
-	private static final String host = "localhost";
-	private static final String user = "root";
-	private static final String pass = "root";
-	private static final String dbName = "bdpersonas";
-	private static final String url = "jdbc:mysql://"+host+"/"+dbName;
-	private Connection conectar = null;
+//	private String driver = "com.mysql.cj.jdbc.Driver";
+	private String host = "localhost/";
+	private String user = "root";
+	private String pass = "";
+	private String dbName = "bdpersonas";
+	private String url = "jdbc:mysql://"+host+dbName;
+	private Connection conectar;
    
 //	Constructor
 	
@@ -25,17 +25,18 @@ public class PersonaDao implements AccesoDatos {
 	
 //	Metodo conectar
 	
-	public Connection conexion() {
+	public Connection conexion(){
 		
 		try {
-			Class.forName(driver).newInstance();
-			this.conectar= DriverManager.getConnection(url,user,pass);
-		
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance() ;
+			this.conectar= DriverManager.getConnection(this.url,this.user,this.pass);
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("Error en la base"+ e.getMessage());	
 		}
 		
-		return conectar;
+		
+		return this.conectar;
 	}	
 	
 //	Metodo cerrar coneccion
@@ -48,7 +49,7 @@ public class PersonaDao implements AccesoDatos {
 	                e.printStackTrace();
 	            }
 	        }
-	  }
+	        }
 	  
 //	Metodo agregar persona
 	
@@ -58,9 +59,9 @@ public class PersonaDao implements AccesoDatos {
 		int filas = 0;
 		
 		try {
-		    conectar = DriverManager.getConnection(host+dbName, user, pass);
+//			conectar = DriverManager.getConnection(host+dbName, user, pass);
 			Statement st = conexion().createStatement();
-			filas = st.executeUpdate(query);
+			filas = st.executeUpdate(query);		
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,17 +77,24 @@ public class PersonaDao implements AccesoDatos {
 	public Persona mostrar(String dni) {
 		
 		Persona entidad = new Persona();
-			
+//			int  fila;
 		try {
 			Statement st = conexion().createStatement();
-			String query = "Select * from Personas where Dni = '"+dni+ "'";
+			String query = "Select * from Personas where Dni like '"+dni+ "'";
 			ResultSet resultado = st.executeQuery(query);
-			resultado.next();
-			entidad.setDni(resultado.getString("Dni"));
-			entidad.setNombre(resultado.getString("Nombre"));
-			entidad.setApellido(resultado.getString("Apellido"));
 			
-		} catch (Exception e) {
+			if(resultado.next()) {
+				
+				entidad.setDni(resultado.getString("Dni"));
+				entidad.setNombre(resultado.getString("Nombre"));
+				entidad.setApellido(resultado.getString("Apellido"));
+				
+			}
+			
+			
+		}catch(SQLException er) {
+			er.printStackTrace();
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		cerrar();

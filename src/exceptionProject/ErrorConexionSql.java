@@ -4,6 +4,9 @@ import java.sql.SQLException;
 
 public class ErrorConexionSql extends SQLException{
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 //	Contructor
