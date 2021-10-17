@@ -10,33 +10,33 @@ public class Animacion implements MouseListener {
 
 	public JLabel label;
 	public Color color;
-	
+
 	public Animacion(JLabel label) {
 		this.label = label;
 		this.color = colorAlAzar();
 	}
-	
+
 	public Animacion(JLabel label, Color color) {
 		this.label = label;
 		this.color = color;
 	}
-	
-	public Color colorAlAzar() {
-		return Util.colorAlAzar();
-	}
-	
+
 	public void pintar() {
-		label.setForeground(this.color);			
+		label.setForeground(this.color);
 	}
-	
+
 	private void pintar(Color color) {
 		label.setForeground(color);
 	}
-	
+
 	private void pintarAlAzar() {
 		pintar(colorAlAzar());
 	}
-	
+
+	public Color colorAlAzar() {
+		return Util.colorAlAzar();
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		pintar(Color.BLACK);
@@ -48,12 +48,15 @@ public class Animacion implements MouseListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {}
+	public void mouseExited(MouseEvent e) {
+	}
 
 }

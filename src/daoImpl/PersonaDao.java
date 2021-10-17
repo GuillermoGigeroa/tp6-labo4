@@ -10,10 +10,10 @@ import dao.AccesoDatos;
 
 public class PersonaDao implements AccesoDatos {
 	private static final String driver = "com.mysql.cj.jdbc.Driver";
-	private static final String host = "localhost:3306";
+	private static final String host = "localhost";
 	private static final String user = "root";
 	private static final String pass = "root";
-	private static final String dbName = "bdpersonas2";
+	private static final String dbName = "bdpersonas";
 	private static final String url = "jdbc:mysql://"+host+"/"+dbName;
 	private Connection conectar = null;
    

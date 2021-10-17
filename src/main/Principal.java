@@ -1,14 +1,15 @@
 package main;
 
-import entidad.Persona;
+//import entidad.Persona;
+//import daoImpl.PersonaDao;
 import presentacion.controlador.Controlador;
 import presentacion.vista.VentanaPrincipal;
-import daoImpl.PersonaDao;
 
 public class Principal {
 	public static void main(String[] args){
 		Controlador controlador = new Controlador(new VentanaPrincipal());
 		controlador.mostrarVentana();
+		/*
 		PersonaDao dao = new PersonaDao();
 		Persona persona = new Persona();
 		
@@ -22,5 +23,6 @@ public class Principal {
 		} else {
 			System.out.println("No cargo");
 		}
+		*/
 	}
 }
