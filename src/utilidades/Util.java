@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
-import presentacion.vista.VentanaPrincipal;
 
 public abstract class Util {
 	
@@ -27,14 +26,10 @@ public abstract class Util {
 	}
 	
 	public static Color colorAlAzar() {
-		ArrayList<Color> listaColores = Util.getListaColores();
+		ArrayList<Color> listaColores = getListaColores();
 		int cantidadColores = listaColores.size();
 		ThreadLocalRandom tlr = ThreadLocalRandom.current();
 		int numero = tlr.nextInt(0, cantidadColores);
 		return listaColores.get(numero);
-	}
-	
-	public static VentanaPrincipal getVentanaPrincipal() {
-		return new VentanaPrincipal();
 	}
 }
