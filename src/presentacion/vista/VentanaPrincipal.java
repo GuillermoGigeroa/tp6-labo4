@@ -210,5 +210,5 @@ public class VentanaPrincipal extends JFrame {
 	public JMenuItem getMenuListar() {
 		return mntmListar;
 	}
-	
+
 }

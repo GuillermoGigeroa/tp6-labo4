@@ -34,6 +34,7 @@ public abstract class Util {
 	}
 
 	// Metodo para recibir un color al azar
+	
 	public static Color colorAlAzar() {
 		ArrayList<Color> listaColores = getListaColores();
 		int cantidadColores = listaColores.size();
@@ -43,12 +44,28 @@ public abstract class Util {
 	}
 
 	// Metodo que verifica si un caracter es un numero
+	
 	public static boolean validarNumero(char caracterRecibido) {
 		int codigo = (int) caracterRecibido;
 		return (codigo >= 48 && codigo <= 57);
 	}
+	
+	// Metodo que remueve los ' y pone un `
+	
+	public static String eliminarComillasSimples(String texto) {
+		String resultado = "";
+		for (int i = 0; i < texto.length(); i++) {
+			if (texto.charAt(i) == '\'') {
+				resultado += '`';
+			} else {
+				resultado += texto.charAt(i);
+			}
+		}
+		return resultado;
+	}
 
 	// Metodo para extraer un DefaultListModel<Persona> de un TreeSet<Persona>
+	
 	public static DefaultListModel<Persona> obtenerDefaultListModel(TreeSet<Persona> listaOrigen) {
 		DefaultListModel<Persona> dlmPersonas = new DefaultListModel<Persona>();
 		dlmPersonas = new DefaultListModel<Persona>();
@@ -58,18 +75,16 @@ public abstract class Util {
 		}
 		return dlmPersonas;
 	}
-	
+
 	// Metodo para extraer un DefaultTableModel<Persona> de un TreeSet<Persona>
-		public static DefaultTableModel obtenerDefaultTableModel(TreeSet<Persona> listaOrigen) {
-			DefaultTableModel dtmPersonas = new DefaultTableModel(
-					new Object[][] {},
-					new String[] {"Nombre", "Apellido", "Dni"}
-					);
-			for (Persona p : listaOrigen)
-			{
-				Object[] fila = {p.getNombre(), p.getApellido(), p.getDni()};
-				dtmPersonas.addRow(fila);
-			}
-			return dtmPersonas;
+	
+	public static DefaultTableModel obtenerDefaultTableModel(TreeSet<Persona> listaOrigen) {
+		DefaultTableModel dtmPersonas = new DefaultTableModel(new Object[][] {},
+				new String[] { "Nombre", "Apellido", "Dni" });
+		for (Persona p : listaOrigen) {
+			Object[] fila = { p.getNombre(), p.getApellido(), p.getDni() };
+			dtmPersonas.addRow(fila);
 		}
+		return dtmPersonas;
+	}
 }

@@ -73,6 +73,8 @@ public class Controlador implements ActionListener {
 		ventana.getMenuListar().setForeground(Color.GRAY);
 		agregar_cargarControladorBoton(panel);
 		agregar_cargarKeyListenerDNI(panel);
+		agregar_cargarKeyListenerNombre(panel);
+		agregar_cargarKeyListenerApellido(panel);
 	}
 
 	// Metodo para cargar el controlador del boton Aceptar de PanelAgregar
@@ -94,7 +96,9 @@ public class Controlador implements ActionListener {
 					Util.mensajeEnPantalla("DNI ya ha sido ingresado");
 					return;
 				}
-				if ((new AgregarPersona()).insertar(new Persona(dni.getText(), nombre.getText(), apellido.getText()))) {
+				String textoNombre = Util.eliminarComillasSimples(nombre.getText());
+				String textoApellido = Util.eliminarComillasSimples(apellido.getText());
+				if ((new AgregarPersona()).insertar(new Persona(dni.getText(), textoNombre, textoApellido))) {
 					nombre.setText(null);
 					apellido.setText(null);
 					dni.setText(null);
@@ -120,6 +124,30 @@ public class Controlador implements ActionListener {
 		});
 	}
 
+	// Metodo para cargar el key listener del JTextField Nombre de PanelAgregar
+
+	public void agregar_cargarKeyListenerNombre(PanelAgregar panel) {
+		JTextField nombre = panel.getTxtNombre();
+		nombre.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				nombre.setText(Util.eliminarComillasSimples(nombre.getText()));
+			}
+		});
+	}
+
+	// Metodo para cargar el key listener del JTextField Apellido de PanelAgregar
+
+	public void agregar_cargarKeyListenerApellido(PanelAgregar panel) {
+		JTextField apellido = panel.getTxtApellido();
+		panel.getTxtApellido().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				apellido.setText(Util.eliminarComillasSimples(apellido.getText()));
+			}
+		});
+	}
+
 	// Metodo para activar la funcionalidad de Modificar y el PanelModificar
 
 	public void accionBotonModificar(ActionEvent a) {
@@ -138,7 +166,7 @@ public class Controlador implements ActionListener {
 	// Metodo para cargar la lista de personas
 
 	public void modificar_cargarPersonas(PanelModificar panel) {
-		panel.getListaPersonas().setModel(ListarPersonas.getLista());
+		panel.getListaPersonas().setModel((new ListarPersonas()).getLista());
 	}
 
 	// Metodo para cargar el evento del JList de PanelModificar
@@ -167,9 +195,11 @@ public class Controlador implements ActionListener {
 		panel.getBtnModificar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				panel.getTxtNombre().setText(Util.eliminarComillasSimples(panel.getTxtNombre().getText()));
+				panel.getTxtApellido().setText(Util.eliminarComillasSimples(panel.getTxtApellido().getText()));
 				if (!(new ModificarPersona()).modificarApeNom(panel.getTxtDni(), panel.getTxtNombre(),
-					panel.getTxtApellido())) {
-					// Modificar para ver si se soluciona
+						panel.getTxtApellido())) {
+					modificar_cargarPersonas(panel);
 					Util.mensajeEnPantalla("Se ha modificado correctamente.");
 				}
 			}
@@ -194,10 +224,11 @@ public class Controlador implements ActionListener {
 	// Metodo para cargar la lista de personas en PanelEliminar
 
 	public void eliminar_cargarPersonas(PanelEliminar panel) {
-		panel.getListaPersonas().setModel(ListarPersonas.getLista());
+		panel.getListaPersonas().setModel((new ListarPersonas()).getLista());
 	}
 
 	// Metodo para cargar el controlador de la accion seleccionar en PanelEliminar
+
 	public void eliminar_cargarMouseListener(PanelEliminar panel) {
 		JList<Persona> lista = panel.getListaPersonas();
 		lista.addMouseListener(new MouseAdapter() {
@@ -215,6 +246,10 @@ public class Controlador implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				(new EliminarPersona()).elimina(new JTextField(panel.getListaPersonas().getSelectedValue().getDni()));
+				eliminar_cargarPersonas(panel);
+				if (panel.getListaPersonas().isSelectionEmpty()) {
+					panel.getBtnEliminar().setEnabled(false);
+				}
 				Util.mensajeEnPantalla("Se ha eliminado correctamente.");
 			}
 		});
@@ -232,11 +267,11 @@ public class Controlador implements ActionListener {
 		ventana.getMenuListar().setForeground(Color.BLACK);
 		listar_cargarPersonas(panel);
 	}
-	
+
 	// Metodo para cargar la lista de personas en PanelListar
-	
+
 	public void listar_cargarPersonas(PanelListar panel) {
-		panel.getTablaPersonas().setModel(ListarPersonas.getListaTabla());
+		panel.getTablaPersonas().setModel((new ListarPersonas()).getListaTabla());
 	}
 
 	// Metodo para cargar el panel ingresado en la ventana

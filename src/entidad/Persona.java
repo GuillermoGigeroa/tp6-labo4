@@ -17,9 +17,9 @@ public class Persona implements Comparable<Persona> {
 	}
 
 	public Persona(String _dni, String _nombre, String _apellido) {
-		this.dni = _dni;
-		this.nombre = _nombre;
-		this.apellido = _apellido;
+		this.dni = _dni.trim();
+		this.nombre = _nombre.trim();
+		this.apellido = _apellido.trim();
 	}
 
 	// Getters y Setters
