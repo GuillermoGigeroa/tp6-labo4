@@ -11,6 +11,7 @@ public class Animacion implements MouseListener {
 	public JLabel label;
 	public Color color;
 
+//	Constructores
 	public Animacion(JLabel label) {
 		this.label = label;
 		this.color = colorAlAzar();
@@ -21,6 +22,7 @@ public class Animacion implements MouseListener {
 		this.color = color;
 	}
 
+//	Metodos
 	public void pintar() {
 		label.setForeground(this.color);
 	}
@@ -37,6 +39,7 @@ public class Animacion implements MouseListener {
 		return Util.colorAlAzar();
 	}
 
+//	Metodos sobrecargados de MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		pintar(Color.BLACK);

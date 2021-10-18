@@ -5,18 +5,14 @@ import javax.swing.JTextField;
 import daoImpl.PersonaDao;
 import negocio.ModificarDatos;
 
-public class ModificarPersona implements ModificarDatos{
+public class ModificarPersona implements ModificarDatos {
 
-	public Boolean modificarApenom(JTextField txtDni, JTextField txtNombre, JTextField txtApellido) {
-		
-		PersonaDao dato = new PersonaDao();
-		
-		if(dato.modificar(txtDni.getText(), txtNombre.getText(), txtApellido.getText())){		
-		
-		return true;
+	// Metodo para modificar el apellido y nombre de una persona en BBDD
+	public Boolean modificarApeNom(JTextField txtDni, JTextField txtNombre, JTextField txtApellido) {
+		if ((new PersonaDao()).modificar(txtDni.getText(), txtNombre.getText(), txtApellido.getText())) {
+			return true;
+		}
+		return false;
 	}
-
-	return false;
-	}	
 
 }

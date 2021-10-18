@@ -10,7 +10,7 @@ public interface AccesoDatos {
 	
 	public void cerrar ();
 	
-	public  Persona mostrar(String dni);
+	public Persona mostrar(String dni);
 	
 	public ArrayList<Persona> listar();
 	

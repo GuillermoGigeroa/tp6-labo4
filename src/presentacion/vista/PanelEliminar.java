@@ -15,8 +15,8 @@ public class PanelEliminar extends JPanel {
 	private GridBagLayout gridBagLayout;
 	private JLabel lblEliminar;
 	private JButton btnEliminar;
-	private JList<Persona> list;
-	private GridBagConstraints gbc_list;
+	private JList<Persona> listaPersonas;
+	private GridBagConstraints gbc_listaPersonas;
 	private GridBagConstraints gbc_lblEliminar;
 	private GridBagConstraints gbc_btnEliminar;
 
@@ -35,16 +35,17 @@ public class PanelEliminar extends JPanel {
 		gbc_lblEliminar.gridy = 1;
 		add(lblEliminar, gbc_lblEliminar);
 		
-		list = new JList<Persona>(new DefaultListModel<Persona>());
-		gbc_list = new GridBagConstraints();
-		gbc_list.gridwidth = 3;
-		gbc_list.insets = new Insets(0, 0, 5, 5);
-		gbc_list.fill = GridBagConstraints.BOTH;
-		gbc_list.gridx = 1;
-		gbc_list.gridy = 2;
-		add(list, gbc_list);
+		listaPersonas = new JList<Persona>(new DefaultListModel<Persona>());
+		gbc_listaPersonas = new GridBagConstraints();
+		gbc_listaPersonas.gridwidth = 3;
+		gbc_listaPersonas.insets = new Insets(0, 0, 5, 5);
+		gbc_listaPersonas.fill = GridBagConstraints.BOTH;
+		gbc_listaPersonas.gridx = 1;
+		gbc_listaPersonas.gridy = 2;
+		add(listaPersonas, gbc_listaPersonas);
 		
 		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setEnabled(false);
 		gbc_btnEliminar = new GridBagConstraints();
 		gbc_btnEliminar.fill = GridBagConstraints.BOTH;
 		gbc_btnEliminar.insets = new Insets(0, 0, 5, 5);
@@ -55,6 +56,10 @@ public class PanelEliminar extends JPanel {
 
 	public JButton getBtnEliminar() {
 		return btnEliminar;
+	}
+
+	public JList<Persona> getListaPersonas() {
+		return listaPersonas;
 	}
 	
 }

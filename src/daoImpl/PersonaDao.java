@@ -7,14 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import entidad.Persona;
+import utilidades.Util;
 import dao.AccesoDatos;
 
 public class PersonaDao implements AccesoDatos {
-	private String host = "localhost/";
-	private String user = "root";
-	private String pass = "root";
-	private String dbName = "bdpersonas";
-	private String url = "jdbc:mysql://" + host + dbName;
+	private final String host = "localhost/";
+	private final String user = "root";
+	private final String pass = "root";
+	private final String dbName = "bdpersonas";
+	private final String url = "jdbc:mysql://" + host + dbName;
 	private Connection conectar;
 
 	// Constructor
@@ -23,13 +24,14 @@ public class PersonaDao implements AccesoDatos {
 	}
 
 	// Metodo conectar
+	
 	public Connection conexion() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			this.conectar = DriverManager.getConnection(this.url, this.user, this.pass);
 		} catch (Exception e) {
 			// e.printStackTrace();
-			System.out.println("Error en la base" + e.getMessage());
+			Util.mensajeEnPantalla("Error en la base - " + e.getMessage());
 		}
 		return this.conectar;
 	}
@@ -78,11 +80,9 @@ public class PersonaDao implements AccesoDatos {
 			ResultSet resultado = st.executeQuery(query);
 
 			if (resultado.next()) {
-
 				entidad.setDni(resultado.getString("Dni"));
 				entidad.setNombre(resultado.getString("Nombre"));
 				entidad.setApellido(resultado.getString("Apellido"));
-
 			}
 
 		} catch (SQLException er) {
@@ -124,6 +124,8 @@ public class PersonaDao implements AccesoDatos {
 
 	}
 
+	// Metodo modificar personas
+	
 	@Override
 	public Boolean modificar(String dni, String nombre, String apellido) {
 
@@ -144,23 +146,19 @@ public class PersonaDao implements AccesoDatos {
 		return hecho;
 	}
 
+	// Metodo eliminar personas
+	
 	@Override
 	public Boolean eliminar(String dni) {
-
 		boolean hecho = false;
-
 		try {
 			Statement st = conexion().createStatement();
 			String query = "Delete from Personas where Dni = '" + dni + "'";
-
 			hecho = st.execute(query);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		cerrar();
-
 		return hecho;
 	}
 

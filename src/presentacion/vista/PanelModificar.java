@@ -53,6 +53,7 @@ public class PanelModificar extends JPanel {
 		add(listaPersonas, gbc_listaPersonas);
 		
 		txtNombre = new JTextField();
+		txtNombre.setText("Nombre");
 		txtNombre.setEditable(false);
 		gbc_txtNombre = new GridBagConstraints();
 		gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
@@ -63,6 +64,7 @@ public class PanelModificar extends JPanel {
 		txtNombre.setColumns(10);
 		
 		txtApellido = new JTextField();
+		txtApellido.setText("Apellido");
 		txtApellido.setEditable(false);
 		gbc_txtApellido = new GridBagConstraints();
 		gbc_txtApellido.insets = new Insets(0, 0, 5, 5);
@@ -73,6 +75,7 @@ public class PanelModificar extends JPanel {
 		txtApellido.setColumns(10);
 		
 		txtDni = new JTextField();
+		txtDni.setText("DNI");
 		txtDni.setEditable(false);
 		gbc_txtDni = new GridBagConstraints();
 		gbc_txtDni.insets = new Insets(0, 0, 5, 5);

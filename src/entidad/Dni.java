@@ -2,62 +2,45 @@ package entidad;
 
 import exceptionProject.DniInvalido;
 
-public class Dni implements Comparable<Dni>{
-	
-//	Atributos
-	
+public class Dni implements Comparable<Dni> {
+
+	// Atributos
+
 	private String numero;
-	
-	
-//	Constructores
-	
-	public Dni() 
-	{
+
+	// Constructores
+
+	public Dni() {
 		numero = "Sin numero";
 	}
-	
-	public Dni(String numero) throws DniInvalido{
-		
-			this.numero = numero;
-			
-			verificarDniInvalido(this.numero);
-		
+
+	public Dni(String numero) throws DniInvalido {
+		this.numero = numero;
+		verificarDniInvalido(this.numero);
 	}
-	
-	
-//	Getters y Setters
-	
+
+	// Getters y Setters
+
 	public String getNumero() {
 		return numero;
 	}
-	
+
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	
-	
-	
-//	Metodo verificarDniInvalido
-	
+
+	// Metodo verificarDniInvalido
+
 	public static void verificarDniInvalido(String dni) throws DniInvalido {
-			
 		try {
-			
-			 Integer.valueOf(dni);
-//			System.out.println("Posee numeros");			
-			
-		} catch (Exception e) {
-		
-			DniInvalido valido = new DniInvalido();
-			throw valido;	
-		
-		 }
-			
+			Integer.valueOf(dni);
+		} catch (NumberFormatException e) {
+			throw new DniInvalido();
+		}
 	}
-	
-	
-//	Metodo hashCode
-	
+
+	// Metodo hashCode
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,10 +48,9 @@ public class Dni implements Comparable<Dni>{
 		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
 		return result;
 	}
-	
-	
-//	Metodo equals
-	
+
+	// Metodo equals
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -85,26 +67,18 @@ public class Dni implements Comparable<Dni>{
 			return false;
 		return true;
 	}
-	
-	
-//	Metodo CompareTo
+
+	// Metodo compareTo
 
 	@Override
 	public int compareTo(Dni o) {
-		int valor= 0;
-			valor = this.getNumero().compareTo(o.getNumero());
-			return valor;
+		return this.getNumero().compareTo(o.getNumero());
 	}
-	
-	
-//	Metodo toString
-	
+
+	// Metodo toString
+
 	@Override
 	public String toString() {
 		return "DNI numero" + numero + ".";
 	}
-
-
-	
-	
 }

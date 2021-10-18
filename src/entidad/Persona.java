@@ -1,27 +1,29 @@
 package entidad;
 
-public class Persona implements Comparable<Persona>{
-	
-//	Atributos
-	
+public class Persona implements Comparable<Persona> {
+
+	// Atributos
+
 	private String dni;
 	private String nombre;
 	private String apellido;
+
+	// Constructores
 	
-//	Constructores
 	public Persona() {
 		dni = "Sin numero";
 		nombre = "Sin nombre";
 		apellido = " No reconocido";
 	}
-	
+
 	public Persona(String _dni, String _nombre, String _apellido) {
 		this.dni = _dni;
 		this.nombre = _nombre;
 		this.apellido = _apellido;
 	}
 
-//	Getters y Setters
+	// Getters y Setters
+	
 	public String getDni() {
 		return dni;
 	}
@@ -45,7 +47,6 @@ public class Persona implements Comparable<Persona>{
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-		
 
 	@Override
 	public int hashCode() {
@@ -100,5 +101,5 @@ public class Persona implements Comparable<Persona>{
 	public String toString() {
 		return "DNI: " + dni.toString() + ", Apellido: " + apellido + ", Nombre: " + nombre + ".";
 	}
-	
+
 }

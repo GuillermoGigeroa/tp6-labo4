@@ -5,15 +5,14 @@ import java.awt.GridBagLayout;
 import javax.swing.JTable;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 public class PanelListar extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JTable table;
+	private JTable tablaPersonas;
 	private GridBagLayout gridBagLayout;
-	private GridBagConstraints gbc_table;
+	private GridBagConstraints gbc_tablaPersonas;
 
 	public PanelListar() {
 		gridBagLayout = new GridBagLayout();
@@ -23,20 +22,16 @@ public class PanelListar extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		table = new JTable();
-		table.setBorder(new LineBorder(Color.GRAY));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nombre", "Apellido", "Dni"
-			}
-		));
-		gbc_table = new GridBagConstraints();
-		gbc_table.insets = new Insets(0, 0, 5, 5);
-		gbc_table.fill = GridBagConstraints.BOTH;
-		gbc_table.gridx = 1;
-		gbc_table.gridy = 1;
-		add(table, gbc_table);
+		tablaPersonas = new JTable();
+		tablaPersonas.setBorder(new LineBorder(Color.GRAY));
+		gbc_tablaPersonas = new GridBagConstraints();
+		gbc_tablaPersonas.insets = new Insets(0, 0, 5, 5);
+		gbc_tablaPersonas.fill = GridBagConstraints.BOTH;
+		gbc_tablaPersonas.gridx = 1;
+		gbc_tablaPersonas.gridy = 1;
+		add(tablaPersonas, gbc_tablaPersonas);
+	}
+	public JTable getTablaPersonas() {
+		return tablaPersonas;
 	}
 }

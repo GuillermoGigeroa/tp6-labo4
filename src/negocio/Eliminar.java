@@ -6,5 +6,4 @@ public interface Eliminar {
 	
 	public Boolean elimina(JTextField txtDni);
 	
-	
 }
