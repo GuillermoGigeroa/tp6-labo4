@@ -2,8 +2,12 @@ package utilidades;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.TreeSet;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import entidad.Persona;
 
 public abstract class Util {
 
@@ -40,5 +44,16 @@ public abstract class Util {
 	public static boolean validarNumero(char caracterRecibido) {
 		int codigo = (int) caracterRecibido;
 		return (codigo >= 48 && codigo <= 57);
+	}
+	
+//	Metodo para extraer un DefaultListModel<Pelicula> de un TreeSet<Pelicula>
+	public static DefaultListModel<Persona> obtenerDefaultListModel(TreeSet<Persona> origen) {
+		DefaultListModel<Persona> dlmPersonas = new DefaultListModel<Persona>();
+		dlmPersonas = new DefaultListModel<Persona>();
+		Iterator<Persona> lista = origen.iterator();
+		while (lista.hasNext()) {
+			dlmPersonas.addElement(lista.next());
+		}
+		return dlmPersonas;
 	}
 }

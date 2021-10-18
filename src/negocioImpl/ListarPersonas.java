@@ -6,60 +6,42 @@ import java.util.Iterator;
 import javax.swing.JTextField;
 import daoImpl.*;
 
-public class ListarPersonas {
-	
-	private static TreeSet<Persona> listaPers;
-	
-//	Constructores
-	
-	public ListarPersonas() {
-		listaPers = new TreeSet<Persona>();
-	}	
-	
+public abstract class ListarPersonas {
 
-//	Metodo cargarDatos 
+	private static TreeSet<Persona> listaPers = new TreeSet<Persona>();
 
-public static TreeSet<Persona> getListaPers() {
-		return listaPers;
-	}
-
+	// Constructores
 
 	public static void setListaPers(TreeSet<Persona> listaPers) {
 		ListarPersonas.listaPers = listaPers;
 	}
 
-
-public void cargarLista() {
-	
-	PersonaDao colleccion = new PersonaDao();
-		
+	public static TreeSet<Persona> getLista() {
+		PersonaDao colleccion = new PersonaDao();
 		listaPers.addAll(colleccion.listar());
-
-		mostrarLista(listaPers);
+		return listaPers;
 	}
-	
-	
-//	Metodo listar todas las personas
-public static void mostrarLista(TreeSet<Persona> listaP)	
-{
-	Iterator<Persona> listaPersona = listaP.iterator();
-	
-	while(listaPersona.hasNext()) {
-		System.out.println(listaPersona.next().toString());
-	}
-}
 
-//	Metodo listar una persona 
-	public Persona mostrarPersona(JTextField txtDni) {
-		
+	// Metodo listar todas las personas
+	public static void mostrarLista(TreeSet<Persona> listaP) {
+		Iterator<Persona> listaPersona = listaP.iterator();
+
+		while (listaPersona.hasNext()) {
+			System.out.println(listaPersona.next().toString());
+		}
+	}
+
+	// Metodo listar una persona
+	public static Persona mostrarPersona(JTextField txtDni) {
+
 		Persona persona = new Persona();
 		PersonaDao dato = new PersonaDao();
-		
-		if(ValidarCarga.camposVacios(txtDni) == false) {
+
+		if (ValidarCarga.camposVacios(txtDni) == false) {
 			persona = dato.mostrar(txtDni.getText());
 		}
-		
+
 		return persona;
-		
+
 	}
 }

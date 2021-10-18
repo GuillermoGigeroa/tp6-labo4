@@ -7,12 +7,15 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import entidad.Animacion;
 import entidad.Persona;
 import negocioImpl.AgregarPersona;
+import negocioImpl.ListarPersonas;
 import negocioImpl.ValidarCarga;
 import presentacion.vista.*;
 import utilidades.Util;
@@ -80,7 +83,12 @@ public class Controlador implements ActionListener {
 					Util.mensajeEnPantalla("DNI ya ha sido ingresado");
 					return;
 				}
-				(new AgregarPersona()).insertar(new Persona(dni.getText(),nombre.getText(),apellido.getText()));
+				if ((new AgregarPersona()).insertar(new Persona(dni.getText(),nombre.getText(),apellido.getText()))) {
+					nombre.setText(null);
+					apellido.setText(null);
+					dni.setText(null);
+					Util.mensajeEnPantalla("Se cargó correctamente.");
+				}
 			}
 		});
 	}
@@ -109,6 +117,8 @@ public class Controlador implements ActionListener {
 		ventana.getMenuModificar().setForeground(Color.BLACK);
 		ventana.getMenuEliminar().setForeground(Color.GRAY);
 		ventana.getMenuListar().setForeground(Color.GRAY);
+		DefaultListModel<Persona> dlmPersonas = Util.obtenerDefaultListModel(ListarPersonas.getLista());
+		panel.getListaPersonas().setModel(dlmPersonas);
 		modificar_cargarControladorBoton(panel);
 	}
 	

@@ -86,9 +86,9 @@ public class Persona implements Comparable<Persona>{
 
 	@Override
 	public int compareTo(Persona p) {
-		int comparacion = this.getApellido().compareTo(p.getApellido());
+		int comparacion = this.getApellido().toLowerCase().compareTo(p.getApellido().toLowerCase());
 		if (comparacion == 0) {
-			comparacion = this.getNombre().compareTo(p.getNombre());
+			comparacion = this.getNombre().toLowerCase().compareTo(p.getNombre().toLowerCase());
 			if (comparacion == 0) {
 				comparacion = this.getDni().compareTo(p.getDni());
 			}
@@ -98,7 +98,7 @@ public class Persona implements Comparable<Persona>{
 
 	@Override
 	public String toString() {
-		return "DNI. Nro: " + dni.toString() + ", apellido y nombre: " + apellido + ", " + nombre + ".";
+		return "DNI: " + dni.toString() + ", Apellido: " + apellido + ", Nombre: " + nombre + ".";
 	}
 	
 }
