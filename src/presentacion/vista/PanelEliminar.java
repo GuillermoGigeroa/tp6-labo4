@@ -52,4 +52,9 @@ public class PanelEliminar extends JPanel {
 		gbc_btnEliminar.gridy = 3;
 		add(btnEliminar, gbc_btnEliminar);
 	}
+
+	public JButton getBtnEliminar() {
+		return btnEliminar;
+	}
+	
 }

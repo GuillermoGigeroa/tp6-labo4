@@ -9,7 +9,6 @@ import entidad.Persona;
 import dao.AccesoDatos;
 
 public class PersonaDao implements AccesoDatos {
-//	private String driver = "com.mysql.cj.jdbc.Driver";
 	private String host = "localhost/";
 	private String user = "root";
 	private String pass = "";
@@ -18,15 +17,12 @@ public class PersonaDao implements AccesoDatos {
 	private Connection conectar;
    
 //	Constructor
-	
 	public PersonaDao() {
 		
 	}
 	
 //	Metodo conectar
-	
 	public Connection conexion(){
-		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance() ;
 			this.conectar= DriverManager.getConnection(this.url,this.user,this.pass);

@@ -57,11 +57,11 @@ public class Controlador implements ActionListener {
 		ventana.getMenuModificar().setForeground(Color.GRAY);
 		ventana.getMenuEliminar().setForeground(Color.GRAY);
 		ventana.getMenuListar().setForeground(Color.GRAY);
-		cargarControladorBotonAceptar(panel);
+		agregar_cargarControladorBoton(panel);
 	}
 	
-//	Metodo para cargar el controlador del boton aceptar de PanelAgregar
-	public void cargarControladorBotonAceptar (PanelAgregar panel) {
+//	Metodo para cargar el controlador del boton Aceptar de PanelAgregar
+	public void agregar_cargarControladorBoton (PanelAgregar panel) {
 		panel.getBtnAceptar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -100,7 +100,19 @@ public class Controlador implements ActionListener {
 		ventana.getMenuModificar().setForeground(Color.BLACK);
 		ventana.getMenuEliminar().setForeground(Color.GRAY);
 		ventana.getMenuListar().setForeground(Color.GRAY);
+		modificar_cargarControladorBoton(panel);
 	}
+	
+//	Metodo para cargar el controlador del boton Modificar de PanelModificar
+	public void modificar_cargarControladorBoton (PanelModificar panel) {
+		panel.getBtnModificar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Evento del boton modificar
+			}
+		});
+	}
+
 	
 //	Metodo para activar la funcionalidad de Eliminar y el PanelEliminar
 	public void accionBotonEliminar(ActionEvent a) {
@@ -111,6 +123,16 @@ public class Controlador implements ActionListener {
 		ventana.getMenuModificar().setForeground(Color.GRAY);
 		ventana.getMenuEliminar().setForeground(Color.BLACK);
 		ventana.getMenuListar().setForeground(Color.GRAY);
+	}
+	
+//	Metodo para cargar el controlador del boton Eliminar de PanelEliminar
+	public void eliminar_cargarControladorBoton (PanelEliminar panel) {
+		panel.getBtnEliminar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Evento del boton eliminar
+			}
+		});
 	}
 	
 //	Metodo para activar la funcionalidad de Listar y el PanelListar

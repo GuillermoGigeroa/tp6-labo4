@@ -88,4 +88,9 @@ public class PanelModificar extends JPanel {
 		gbc_btnModificar.gridy = 3;
 		add(btnModificar, gbc_btnModificar);
 	}
+
+	public JButton getBtnModificar() {
+		return btnModificar;
+	}
+	
 }
