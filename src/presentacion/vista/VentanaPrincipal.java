@@ -74,7 +74,7 @@ public class VentanaPrincipal extends JFrame {
 		lbl3.setFont(new Font("Monospaced", Font.BOLD, 60));
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 150, 450, 300);
+		setBounds(350, 150, 614, 300);
 		
 		menu = new JMenuBar();
 		setJMenuBar(menu);

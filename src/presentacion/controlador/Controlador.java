@@ -5,10 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -16,6 +16,7 @@ import entidad.Animacion;
 import entidad.Persona;
 import negocioImpl.AgregarPersona;
 import negocioImpl.ListarPersonas;
+import negocioImpl.ModificarPersona;
 import negocioImpl.ValidarCarga;
 import presentacion.vista.*;
 import utilidades.Util;
@@ -117,9 +118,30 @@ public class Controlador implements ActionListener {
 		ventana.getMenuModificar().setForeground(Color.BLACK);
 		ventana.getMenuEliminar().setForeground(Color.GRAY);
 		ventana.getMenuListar().setForeground(Color.GRAY);
-		DefaultListModel<Persona> dlmPersonas = Util.obtenerDefaultListModel(ListarPersonas.getLista());
-		panel.getListaPersonas().setModel(dlmPersonas);
 		modificar_cargarControladorBoton(panel);
+		modificar_cargarEventoClick(panel);
+		modificar_cargarPersonas(panel);
+	}
+	
+//	Metodo para cargar la lista de personas
+	public void modificar_cargarPersonas(PanelModificar panel) {
+		panel.getListaPersonas().setModel(ListarPersonas.getLista());
+	}
+	
+//	Metodo para cargar el evento del JList de PanelModificar
+	public void modificar_cargarEventoClick (PanelModificar panel) {
+		panel.getListaPersonas().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Persona persona = panel.getListaPersonas().getSelectedValue();
+				panel.getBtnModificar().setEnabled(true);
+				panel.getTxtNombre().setEditable(true);
+				panel.getTxtNombre().setText(persona.getNombre());
+				panel.getTxtApellido().setEditable(true);
+				panel.getTxtApellido().setText(persona.getApellido());
+				panel.getTxtDni().setText(persona.getDni());
+			}
+		});
 	}
 	
 //	Metodo para cargar el controlador del boton Modificar de PanelModificar
@@ -127,12 +149,13 @@ public class Controlador implements ActionListener {
 		panel.getBtnModificar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Evento del boton modificar
+				if (!(new ModificarPersona()).modificarApenom(panel.getTxtDni(),panel.getTxtNombre(),panel.getTxtApellido())){
+					Util.mensajeEnPantalla("Se ha modificado correctamente.");
+				}
 			}
 		});
 	}
 
-	
 //	Metodo para activar la funcionalidad de Eliminar y el PanelEliminar
 	public void accionBotonEliminar(ActionEvent a) {
 		PanelEliminar panel = new PanelEliminar();

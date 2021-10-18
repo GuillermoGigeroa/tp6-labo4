@@ -99,4 +99,20 @@ public class PanelModificar extends JPanel {
 		return listaPersonas;
 	}
 	
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+
+	public JTextField getTxtApellido() {
+		return txtApellido;
+	}
+
+	public JTextField getTxtDni() {
+		return txtDni;
+	}
+
+	public void setListaPersonas(JList<Persona> listaPersonas) {
+		this.listaPersonas = listaPersonas;
+	}
+	
 }

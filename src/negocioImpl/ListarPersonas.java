@@ -3,8 +3,10 @@ package negocioImpl;
 import java.util.TreeSet;
 import entidad.Persona;
 import java.util.Iterator;
+import javax.swing.DefaultListModel;
 import javax.swing.JTextField;
 import daoImpl.*;
+import utilidades.Util;
 
 public abstract class ListarPersonas {
 
@@ -16,10 +18,10 @@ public abstract class ListarPersonas {
 		ListarPersonas.listaPers = listaPers;
 	}
 
-	public static TreeSet<Persona> getLista() {
+	public static DefaultListModel<Persona> getLista() {
 		PersonaDao colleccion = new PersonaDao();
 		listaPers.addAll(colleccion.listar());
-		return listaPers;
+		return Util.obtenerDefaultListModel(listaPers);
 	}
 
 	// Metodo listar todas las personas
