@@ -30,7 +30,7 @@ public class PersonaDao implements AccesoDatos {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			this.conectar = DriverManager.getConnection(this.url, this.user, this.pass);
 		} catch (Exception e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 			Util.mensajeEnPantalla("Error en la base - " + e.getMessage());
 		}
 		return this.conectar;
