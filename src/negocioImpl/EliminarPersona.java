@@ -13,9 +13,11 @@ public class EliminarPersona implements Eliminar {
 		
 		if(ValidarCarga.dniExistente(txtDni)) {
 		PersonaDao pDao = new PersonaDao();
-			return pDao.eliminar(txtDni.getText());
+			 pDao.eliminar(txtDni.getText());
+			return true;
+		}else {
+			return false;
 		}
-		return false;
 
 	}
 

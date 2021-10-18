@@ -128,24 +128,24 @@ public class PersonaDao implements AccesoDatos {
 	}
 
 	@Override
-	public Boolean modificar(String dni, String nombre) {
-		
-		boolean hecho = false;
-		
-	
-		try {
-			Statement st = conexion().createStatement();
-			String query = "Update Personas set Nombre Like '" +nombre+"'  where Dni = '"+dni+ "'";
-			hecho = st.execute(query);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		cerrar();
-		
-		return hecho;
-	}
+	public Boolean modificar(String dni, String nombre, String apellido) {
+
+        boolean hecho = false;
+
+
+        try {
+            Statement st = conexion().createStatement();
+            String query = "Update personas set Nombre = '" +nombre+"', Apellido = '" +apellido+ "'  where Dni = '"+dni+ "'";
+            hecho = st.execute(query);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        cerrar();
+
+        return hecho;
+    }
 
 	@Override
 	public Boolean eliminar(String dni) {

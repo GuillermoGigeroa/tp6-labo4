@@ -6,11 +6,13 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 
 public abstract class Util {
-	
+
+//	Metodo para enviar un mensaje a la pantalla
 	public static void mensajeEnPantalla(String mensaje) {
 		JOptionPane.showMessageDialog(null, mensaje);
 	}
-	
+
+// 	Metodo para recibir la lista de colores
 	public static ArrayList<Color> getListaColores() {
 		ArrayList<Color> listaColores = new ArrayList<Color>();
 		listaColores.add(Color.RED);
@@ -24,7 +26,8 @@ public abstract class Util {
 		listaColores.add(Color.YELLOW);
 		return listaColores;
 	}
-	
+
+//	Metodo para recibir un color al azar
 	public static Color colorAlAzar() {
 		ArrayList<Color> listaColores = getListaColores();
 		int cantidadColores = listaColores.size();
@@ -33,15 +36,9 @@ public abstract class Util {
 		return listaColores.get(numero);
 	}
 	
-//	Metodo que quita los puntos de un String
-	
-	public static String quitarPuntos(String texto) {
-		String resultado = "";
-		for (int i = 0; i < texto.length(); i ++) {
-			if (texto.charAt(i) != '.') {
-				resultado += texto.charAt(i);
-			}
-		}
-		return resultado;
+//	Metodo que verifica si un caracter es un numero
+	public static boolean validarNumero(char caracterRecibido) {
+		int codigo = (int) caracterRecibido;
+		return (codigo >= 48 && codigo <= 57);
 	}
 }

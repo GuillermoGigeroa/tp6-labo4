@@ -3,13 +3,15 @@ package presentacion.controlador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import entidad.Animacion;
-import entidad.Dni;
-import exceptionProject.DniInvalido;
+import negocioImpl.ValidarCarga;
 import presentacion.vista.*;
 import utilidades.Util;
 
@@ -58,6 +60,7 @@ public class Controlador implements ActionListener {
 		ventana.getMenuEliminar().setForeground(Color.GRAY);
 		ventana.getMenuListar().setForeground(Color.GRAY);
 		agregar_cargarControladorBoton(panel);
+		agregar_cargarKeyListenerDNI(panel);
 	}
 	
 //	Metodo para cargar el controlador del boton Aceptar de PanelAgregar
@@ -65,31 +68,32 @@ public class Controlador implements ActionListener {
 		panel.getBtnAceptar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (panel.getTxtNombre().getText().trim().isEmpty()) {
-					Util.mensajeEnPantalla("Ingrese nombre antes de continuar");
-					return;
-				}
-				if (panel.getTxtApellido().getText().trim().isEmpty()) {
-					Util.mensajeEnPantalla("Ingrese apellido antes de continuar");
-					return;
-				}
-				String numero = panel.getTxtDni().getText().trim();
-				if (numero.isEmpty()) {
-					Util.mensajeEnPantalla("Ingrese Dni antes de continuar");
-					return;
-				}
-				try {
-					new Dni(numero);
-				}
-				catch (DniInvalido error) {
-					Util.mensajeEnPantalla(error.getMessage());
-					return;
+				if (ValidarCarga.camposVacios(panel.getTxtNombre(),"Nombre")) return;
+				if (ValidarCarga.camposVacios(panel.getTxtApellido(),"Apellido")) return;
+				JTextField dni = panel.getTxtDni();
+				if (ValidarCarga.camposVacios(dni, "DNI")) return;
+				if (ValidarCarga.dniExistente(dni)) {
+					Util.mensajeEnPantalla("DNI ya ha sido ingresado");
 				}
 				Util.mensajeEnPantalla("Se ha ejecutado correctamente el comando del botón");
 			}
 		});
 	}
 	
+//	Metodo para cargar el key listener del JTextField DNI de PanelAgregar
+	public void agregar_cargarKeyListenerDNI (PanelAgregar panel) {
+		panel.getTxtDni().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Util.validarNumero(e.getKeyChar())) {
+					e.consume();
+				}
+				if (panel.getTxtDni().getText().trim().length() > 7) {
+					e.consume();
+				}
+			}
+		});
+	}
 
 //	Metodo para activar la funcionalidad de Modificar y el PanelModificar
 	public void accionBotonModificar(ActionEvent a) {
