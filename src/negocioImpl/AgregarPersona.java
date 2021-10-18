@@ -12,14 +12,13 @@ public class AgregarPersona implements Agregar {
 	public Boolean insertar(Persona p) {
 		JTextField txtDni = new JTextField();
 		txtDni.setText(p.getDni());
-		if(ValidarCarga.dniExistente(txtDni)) {
-				return false;
-			}else {
-				PersonaDao pDao = new PersonaDao();
-				pDao.agregar(p);
-				return true;
-			}
+		if (ValidarCarga.dniExistente(txtDni)) {
+			return false;
+		} else {
+			PersonaDao pDao = new PersonaDao();
+			pDao.agregar(p);
+			return true;
 		}
-	
-	
+	}
+
 }

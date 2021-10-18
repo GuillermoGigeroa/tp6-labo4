@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import entidad.Animacion;
+import entidad.Persona;
+import negocioImpl.AgregarPersona;
 import negocioImpl.ValidarCarga;
 import presentacion.vista.*;
 import utilidades.Util;
@@ -68,14 +70,17 @@ public class Controlador implements ActionListener {
 		panel.getBtnAceptar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (ValidarCarga.camposVacios(panel.getTxtNombre(),"Nombre")) return;
-				if (ValidarCarga.camposVacios(panel.getTxtApellido(),"Apellido")) return;
+				JTextField nombre = panel.getTxtNombre();
+				JTextField apellido  = panel.getTxtApellido();
 				JTextField dni = panel.getTxtDni();
+				if (ValidarCarga.camposVacios(nombre,"Nombre")) return;
+				if (ValidarCarga.camposVacios(apellido,"Apellido")) return;
 				if (ValidarCarga.camposVacios(dni, "DNI")) return;
 				if (ValidarCarga.dniExistente(dni)) {
 					Util.mensajeEnPantalla("DNI ya ha sido ingresado");
+					return;
 				}
-				Util.mensajeEnPantalla("Se ha ejecutado correctamente el comando del botón");
+				(new AgregarPersona()).insertar(new Persona(dni.getText(),nombre.getText(),apellido.getText()));
 			}
 		});
 	}
