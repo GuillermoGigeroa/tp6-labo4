@@ -1,6 +1,8 @@
 package presentacion.vista;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.GridBagLayout;
 import javax.swing.JTable;
 import java.awt.GridBagConstraints;
@@ -29,7 +31,7 @@ public class PanelListar extends JPanel {
 		gbc_tablaPersonas.fill = GridBagConstraints.BOTH;
 		gbc_tablaPersonas.gridx = 1;
 		gbc_tablaPersonas.gridy = 1;
-		add(tablaPersonas, gbc_tablaPersonas);
+		add(new JScrollPane(tablaPersonas), gbc_tablaPersonas);
 	}
 	public JTable getTablaPersonas() {
 		return tablaPersonas;

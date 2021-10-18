@@ -65,8 +65,6 @@ public abstract class Util {
 					new Object[][] {},
 					new String[] {"Nombre", "Apellido", "Dni"}
 					);
-			Object[] primeraFila = {"Nombre", "Apellido", "Dni"};
-			dtmPersonas.addRow(primeraFila);
 			for (Persona p : listaOrigen)
 			{
 				Object[] fila = {p.getNombre(), p.getApellido(), p.getDni()};
